@@ -1,0 +1,13 @@
+# Workers
+worker_cores: 4
+worker_sockets: 4
+worker_threads: 4
+worker_disk_gb: 120
+worker_memory_mb: 65536
+
+# Masters
+master_cores: 4
+master_sockets: 4
+master_threads: 1
+master_disk_gb: 120
+master_memory_mb: 65536

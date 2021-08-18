@@ -1,0 +1,11 @@
+---
+
+- name: Set Location of RHV Configuration File
+  set_fact:
+    ovirt_config_file: "{{ openshift_config_dir }}/.ovirt-config.yaml"
+  when: ovirt_config_file == ""
+
+- name: Generate RHV Configuration file
+  template:
+    src: ovirt-config.yaml.j2
+    dest: "{{ ovirt_config_file }}"

@@ -1,0 +1,25 @@
+---
+
+- name: Initialize Environment
+  include_tasks: init.yml
+
+- name: Obtain Software
+  include_tasks: software.yml
+
+- name: Prepare for OpenShift Deployment
+  include_tasks: ocp_prep.yml
+
+- name: Prepare for RHV Deployment
+  include_tasks: rhv.yml
+
+- name: OpenShift Deployment
+  block:
+  - name: Deploy OpenShift Environment
+    include_tasks: deploy.yml
+  when: environment_action == "deploy"
+
+- name: OpenShift Destroy
+  block:
+    - name: Destroy OpenShift
+      include_tasks: destroy.yml
+  when: environment_action == "destroy"

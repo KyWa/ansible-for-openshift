@@ -1,0 +1,25 @@
+# Place all OCP4 Specific variables here
+openshift_working_dir: ""
+openshift_config_dir: ""
+openshift_bin_dir: ""
+
+environment_action: "deploy"
+
+ocp_install_log_level: debug
+
+remove_openshift_install_dir: False
+remove_cluster_dir_on_delete: True
+
+
+openshift_client_base_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp
+openshift_install_url: "{{ openshift_client_base_url + '/' + openshift_version + '/' + 'openshift-install-' + 'linux' +'.tar.gz' }}"
+openshift_client_url: "{{ openshift_client_base_url + '/' + openshift_version + '/' + 'openshift-client-' + 'linux' +'.tar.gz' }}"
+
+openshift_install_archive: "openshift-install-linux.tar.gz"
+openshift_client_archive: "openshift-client-linux.tar.gz"
+
+ssh_key_file: "~/.ssh/id_rsa.pub"
+openshift_ssh_key: ""
+
+ocp_install_async_timeout: 5000
+ocp_install_async_poll: 10

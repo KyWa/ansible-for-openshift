@@ -1,0 +1,18 @@
+---
+
+- name: Manage OpenShift SSH Key
+  block:
+    - name: Get SSH Public Key
+      slurp:
+        src: "{{ ssh_key_file }}"
+      register: ssh_public_key_file
+
+    - name: Set SSH public key content
+      set_fact:
+        openshift_ssh_key: "{{ (ssh_public_key_file['content'] | b64decode).splitlines()[0] }}"
+  when: openshift_ssh_key == ""
+
+- name: Generate install-config.yaml
+  template:
+    dest: "{{ openshift_config_dir }}/install-config.yaml"
+    src: rhv-install-config.yaml.j2

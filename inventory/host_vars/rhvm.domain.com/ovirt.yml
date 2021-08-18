@@ -1,0 +1,5 @@
+ovirt_engine: "{{ inventory_hostname }}"
+ovirt_url: https://{{ ovirt_engine }}/ovirt-engine/api
+ovirt_username: "{{ vault_ovirt_username }}"
+ovirt_password: "{{ vault_ovirt_password }}"
+ovirt_datacenter: Default

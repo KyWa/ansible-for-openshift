@@ -1,0 +1,15 @@
+# Place all RHV/oVirt specific variables here
+ovirt_cluster: Default
+ovirt_config_file: "" # Leave blank unless you know what you are doing
+
+# Configure the hosted_engine host_vars for these variables
+ovirt_url: "{{ hostvars[groups['hosted_engine'][0]].ovirt_url }}"
+ovirt_username: "{{ hostvars[groups['hosted_engine'][0]].ovirt_username }}"
+ovirt_password: "{{ hostvars[groups['hosted_engine'][0]].ovirt_password }}"
+
+# Obtain this from RHV using CURL (see OCP4 documentation https://docs.openshift.com) and the RHV-M WebUI
+ovirt_cluster_id: ""
+ovirt_network_name: ""
+ovirt_storage_domain: ""
+ovirt_vnic_profile_id: ""
+ovirt_storage_domain_id: ""

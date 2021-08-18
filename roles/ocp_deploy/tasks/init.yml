@@ -1,0 +1,54 @@
+---
+
+- name: Validate Cluster Name is defined
+  assert:
+    that:
+      - openshift_cluster_name is defined
+      - openshift_cluster_name != ""
+
+- name: Set OpenShift Base Working Directory
+  set_fact:
+    openshift_working_dir: "/tmp"
+  when: openshift_working_dir == ""
+
+- name: Set OpenShift Config Directory
+  set_fact:
+    openshift_config_dir: "{{ openshift_working_dir }}/ocp4-{{ openshift_cluster_name }}-config"
+  when: openshift_config_dir == ""
+
+- name: Set OpenShift Bin Directory
+  set_fact:
+    openshift_bin_dir: "{{ openshift_working_dir }}/ocp4-{{ openshift_cluster_name }}-bin"
+  when: openshift_bin_dir == ""
+
+- name: Validate Required Parameters
+  assert:
+    that:
+      - openshift_pull_secret is defined
+      - openshift_pull_secret != ""
+      - openshift_api_vip is defined
+      - openshift_api_vip != ""
+      - openshift_ingress_vip is defined
+      - openshift_ingress_vip != ""
+      - ovirt_url is defined
+      - ovirt_url != ""
+      - ovirt_username is defined
+      - ovirt_username != ""
+      - ovirt_password is defined
+      - ovirt_password != ""
+
+- name: Create Main Directory Structure
+  file:
+    path: "{{ openshift_working_dir }}"
+    state: "directory"
+    mode: 0777
+  when: openshift_working_dir != "/tmp"
+
+- name: Create Sub Directory Structure
+  file:
+    path: "{{ item }}"
+    state: "directory"
+    mode: 0777
+  loop:
+    - "{{ openshift_bin_dir }}"
+    - "{{ openshift_config_dir }}"

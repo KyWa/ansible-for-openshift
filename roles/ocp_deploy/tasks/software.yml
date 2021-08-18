@@ -1,0 +1,32 @@
+---
+- name: Obtain openshift-install
+  get_url:
+    url: "{{ openshift_install_url }}"
+    dest: "{{ openshift_bin_dir }}"
+  delegate_to: localhost
+
+- name: Obtain oc
+  get_url:
+    url: "{{ openshift_client_url }}"
+    dest: "{{ openshift_bin_dir }}"
+  delegate_to: localhost
+
+- name: Extract openshift-install
+  command: >-
+    tar -xf "{{ openshift_bin_dir }}/{{ openshift_install_archive }}" --directory "{{ openshift_bin_dir }}"
+  delegate_to: localhost
+
+- name: Extract oc
+  command: >-
+    tar -xf "{{ openshift_bin_dir }}/{{ openshift_client_archive }}" --directory "{{ openshift_bin_dir }}"
+  delegate_to: localhost
+
+- name: Set permissions for OpenShift binaries
+  file:
+    path: "{{ item }}"
+    state: file
+    mode: 0755
+  delegate_to: localhost
+  loop:
+    - "{{ openshift_bin_dir }}/openshift-install"
+    - "{{ openshift_bin_dir }}/oc"

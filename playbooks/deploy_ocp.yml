@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Execute Deploy OCP Role
+      include_role:
+        name: ocp_deploy

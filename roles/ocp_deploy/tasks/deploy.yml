@@ -1,0 +1,21 @@
+---
+
+- block:
+    - name: Run openshift-install create cluster
+      command: >-
+        {{ openshift_bin_dir }}/openshift-install create cluster
+        --dir "{{ openshift_config_dir }}"
+        --log-level "{{ ocp_install_log_level }}"
+      async: "{{ ocp_install_async_timeout }}"
+      poll: 0
+      register: ocp_install_create_cluster_async
+      environment:
+        OVIRT_CONFIG: "{{ ovirt_config_file }}"
+
+    - name: Poll openshift-install create cluster task status
+      async_status:
+        jid: "{{ ocp_install_create_cluster_async.ansible_job_id }}"
+      register: ocp_install_create_cluster_result
+      until: ocp_install_create_cluster_result is finished
+      delay: "{{ ocp_install_async_poll }}"
+      retries: "{{ ocp_install_async_timeout // ocp_install_async_poll }}"

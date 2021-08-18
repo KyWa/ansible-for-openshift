@@ -1,0 +1,6 @@
+# Place all cluster specific variables here
+openshift_cluster_domain: "example.com"
+openshift_cluster_name: ""
+
+openshift_api_vip: 
+openshift_ingress_vip: 

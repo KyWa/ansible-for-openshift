@@ -1,0 +1,10 @@
+---
+openshift_version: "stable-4.6"
+
+master_replicas: 3
+worker_replicas: 3
+
+cluster_network_cidr: "10.72.0.0/14"
+cluster_network_host_prefix: 23
+machine_network_cidr: "10.0.0.0/16"
+service_network_cidr: "10.76.0.0/16"

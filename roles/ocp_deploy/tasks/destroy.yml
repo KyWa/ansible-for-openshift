@@ -1,0 +1,21 @@
+---
+
+- name: Check if metadata.json exists
+  stat:
+    path: "{{ openshift_config_dir }}/metadata.json"
+  register: openshift_metadata_stat_result
+
+- name: Destroy OpenShift Environment
+  command: >-
+    {{ openshift_bin_dir }}/openshift-install destroy cluster
+    --dir "{{ openshift_config_dir }}"
+    --log-level "{{ ocp_install_log_level }}"
+  environment:
+    OVIRT_CONFIG: "{{ ovirt_config_file }}"
+  when: openshift_metadata_stat_result.stat.exists
+
+- name: Remove Cluster Directory
+  file:
+    path: "{{ openshift_working_dir }}"
+    state: absent
+  when: remove_cluster_dir_on_delete|bool

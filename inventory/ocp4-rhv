@@ -1,0 +1,8 @@
+[ocp4:children]
+ocp4-rhv
+
+[ocp4-rhv]
+localhost ansible_connection=local
+
+[hosted_engine]
+rhvm.domain.com
