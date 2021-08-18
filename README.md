@@ -4,3 +4,4 @@
 
 * OCP on RHV: [docs](docs/rhv.md)
 * OCP on vSphere: [docs](docs/vsphere.md) ##TODO
+* OCP on OpenStack: [docs](docs/openstack.md) ##TODO
