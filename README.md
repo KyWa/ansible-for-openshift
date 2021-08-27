@@ -4,7 +4,7 @@
 
 > **_NOTE:_** This Ansible role should also work for [OKD](https://www.okd.io/) as well. 
 > The variables `openshift_client_base_url` and `openshift_install_url` will need to be updated to target OKD correctly. 
-> See https://github.com/openshift/okd#getting-started
+> For more information, see https://github.com/openshift/okd#getting-started
 
 * OCP on RHV: [docs](docs/rhv.md)
 * OCP on vSphere: [docs](docs/vsphere.md) ##TODO
