@@ -44,7 +44,3 @@ $ ansible-playbook -i inventory/ocp4-rhv playbooks/deploy_ocp.yml
 ```
 
 The above command assumes that the extra set of variable as described in the prerequisites section are stored in a file called `ocp-dev`.
-
-## OCP on vSphere
-
-###TODO
