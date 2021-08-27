@@ -1,0 +1,21 @@
+---
+- name: set_fact - kubeadmin auth file
+  set_fact:
+    kubeadmin_file: "{{ openshift_config_dir }}/auth/kubeadmin-password"
+
+- name: set_fact - kubeadmin password
+  set_fact:
+    kubeadmin_password: "{{ lookup('file', kubeadmin_file) }}"
+  notify: display_kubeadmin_password
+
+# This section will login to the cluster and obtain the infra ID to be used later if needed
+- name: login to cluster
+  shell: oc login https://api.{{ openshift_cluster_name }}.{{ openshift_cluster_domain }}:6443
+
+- name: obtain OCP infrastructure ID
+  shell: oc get -o jsonpath='{.status.infrastructureName}{"\n"} infrastructure cluster
+  register: ocp_infrastructure_id
+
+- name: set_fact - infrastructure ID
+  set_fact: 
+    infrastructure_id: "{{ ocp_infrastructure_id.stdout }}"

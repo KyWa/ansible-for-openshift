@@ -14,8 +14,13 @@
 
 - name: OpenShift Deployment
   block:
+
   - name: Deploy OpenShift Environment
     include_tasks: deploy.yml
+
+  - name: Obtain Kube Cluster information
+    include_tasks: kube-init.yml
+
   when: environment_action == "deploy"
 
 - name: OpenShift Destroy
