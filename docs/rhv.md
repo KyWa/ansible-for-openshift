@@ -1,5 +1,7 @@
 # OpenShift Container Platform on RHV
 
+This document outlines using this repository, if you need information regarding deploying OpenShift 4.X through normal means (or would like to compare with what this repository is doing) always check the [officla docs](https://docs.openshift.com) from Red Hat.
+
 ## OCP on RHV
 
 ### Configuring manifest

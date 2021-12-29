@@ -5,7 +5,7 @@
     dest: "{{ openshift_bin_dir }}"
   delegate_to: localhost
 
-- name: Obtain oc
+- name: Obtain openshift-client
   get_url:
     url: "{{ openshift_client_url }}"
     dest: "{{ openshift_bin_dir }}"
@@ -16,7 +16,7 @@
     tar -xf "{{ openshift_bin_dir }}/{{ openshift_install_archive }}" --directory "{{ openshift_bin_dir }}"
   delegate_to: localhost
 
-- name: Extract oc
+- name: Extract openshift-client
   command: >-
     tar -xf "{{ openshift_bin_dir }}/{{ openshift_client_archive }}" --directory "{{ openshift_bin_dir }}"
   delegate_to: localhost
