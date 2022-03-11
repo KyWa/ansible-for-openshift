@@ -10,7 +10,7 @@ compute:
         cores: {{ worker_cores }}
         sockets: {{ worker_sockets }}
       memoryMB: {{ worker_memory_mb }}
-      onDisk:
+      osDisk:
         sizeGB: {{ worker_disk_gb }}
   replicas: {{ worker_replicas }}
 controlPlane:
@@ -23,7 +23,7 @@ controlPlane:
         cores: {{ master_cores }}
         sockets: {{ master_sockets }}
       memoryMB: {{ master_memory_mb }}
-      onDisk:
+      osDisk:
         sizeGB: {{ master_disk_gb }}
   replicas: {{ master_replicas }}
 metadata:
